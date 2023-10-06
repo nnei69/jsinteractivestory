@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Interactive Story</title>
+</head>
+<body>
+    <div id="output"></div>
+    <script>
+        const outputDiv = document.getElementById("output");
+
+        function showMessage(message) {
+            outputDiv.innerHTML += `<p>${message}</p>`;
+        }
+
+        function promptChoice(message, choices) {
+            showMessage(message);
+            let choice;
+            do {
+                choice = prompt(`Choices: ${choices.join(', ')}`);
+                choice = choice ? choice.toLowerCase() : '';
+            } while (!choices.includes(choice));
+            return choice;
+        }
+
+        showMessage("Welcome to the Interactive Story!");
+        const name = prompt("Enter your name:");
+
+        showMessage(`Hello, ${name}! You find yourself at a crossroad in the forest.`);
+        const choice1 = promptChoice("You have two paths to choose from: 'left' or 'right'.", ["left", "right"]);
+
+        if (choice1 === "left") {
+            showMessage("You chose the left path and found an old cabin.");
+            const choice2 = promptChoice("Inside the cabin, you discover a hidden treasure map. Will you follow the map ('follow') or continue your journey ('continue')?", ["follow", "continue"]);
+
+            if (choice2 === "follow") {
+                showMessage("You decide to follow the map's clues.");
+                // Add more story content and choices here...
+            } else if (choice2 === "continue") {
+                showMessage("You leave the cabin and continue your journey.");
+                // Add more story content and choices here...
+            }
+        } else if (choice1 === "right") {
+            showMessage("You chose the right path and encountered a mystical waterfall.");
+            const choice3 = promptChoice("You notice a hidden cave behind the waterfall. Do you want to explore the cave ('explore') or avoid it ('avoid')?", ["explore", "avoid"]);
+
+            if (choice3 === "explore") {
+                showMessage("You enter the cave and find a chest filled with ancient artifacts.");
+                // Add more story content and choices here...
+            } else if (choice3 === "avoid") {
+                showMessage("You decide not to risk it and continue your journey.");
+                // Add more story content and choices here...
+            }
+        }
+
+        showMessage(`Thanks for playing, ${name}! Goodbye.`);
+    </script>
+</body>
+</html>
